@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed | Prescript</title>
+
+    <link rel="stylesheet" href="./style/prescript.css">
+</head>
+
+<body>
+    <div class="layout">
+        <div class="top-bar">
+            <div class="logo">Prescript</div>
+            <div class="top-bar-buttons">
+                <button class="btn">Notifications</button>
+                <button class="btn">Messages</button>
+                <button class="btn">Log Out</button>
+            </div>
+        </div>
+        <aside class="menu">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="#">Explore</a></li>
+            </ul>
+        </aside>
+        <main class="feed">
+            <div id="posts-container">
+                <!-- Posts will be dynamically injected here -->
+            </div>
+        </main>
+        <aside class="featured">
+            <h2>Featured Posts</h2>
+            <div class="featured-posts">
+                <p>Stay tuned for trending topics!</p>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const posts = [
+            {
+                name: "Gérard Girard",
+                profile: "https://via.placeholder.com/40",
+                content: "I buy a new bus. Very good.",
+                imageEmbed: "https://via.placeholder.com/300",
+                isAd: false,
+                likes: 120,
+                reposts: 30
+            },
+            {
+                name: "Lysent Ent.",
+                profile: "https://via.placeholder.com/40",
+                content: "New district home subscriptions out now for 1 to 6 occupants!",
+                imageEmbed: "https://via.placeholder.com/300",
+                isAd: true,
+                likes: 20,
+                reposts: 5
+            },
+            {
+                name: "Squebouille",
+                profile: "https://via.placeholder.com/40",
+                content: "Enjoying the sunset 🌅",
+                imageEmbed: "",
+                isAd: false,
+                likes: 80,
+                reposts: 15
+            }
+        ];
+
+        const postsContainer = document.getElementById('posts-container');
+
+        function renderPosts() {
+            postsContainer.innerHTML = '';
+            posts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+
+                let sponsoredHeader = '';
+                if (post.isAd) {
+                    sponsoredHeader = `
+                <div class="sponsored">
+                    Sponsored 
+                    <a href="#" onclick="closePost(${index})">X Close</a>
+                </div>`;
+                }
+
+                postElement.innerHTML = `
+            ${sponsoredHeader}
+            <div class="post-header">
+                <img src="${post.profile}" alt="${post.name}">
+                <span>${post.name}</span>
+            </div>
+            <div class="post-content">
+                <p>${post.content}</p>
+                ${post.imageEmbed ? `<img src="${post.imageEmbed}" alt="Post Image">` : ''}
+            </div>
+            <div class="post-footer">
+                <span>${post.likes} Likes</span>
+                <span>${post.reposts} Reposts</span>
+            </div>
+        `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        function closePost(index) {
+            posts.splice(index, 1);
+            renderPosts();
+        }
+
+        renderPosts();
+
+    </script>
+</body>
+
+</html>

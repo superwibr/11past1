@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Prescript</title>
+
+    <link rel="stylesheet" href="./style/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Welcome Back!</h1>
+            <p>Sign in to access your account and explore your personalized content.</p>
+        </div>
+        <div class="right-panel">
+            <div id="login-form" class="form-container">
+                <h2>Login</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                    <p>Don't have an account? <a href="#" onclick="switchToSignUp()">Sign Up</a></p>
+                </form>
+            </div>
+            <div id="signup-form" class="form-container hidden">
+                <h2>Sign Up</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="new-email">Email</label>
+                        <input type="email" id="new-email" name="new-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Password</label>
+                        <input type="password" id="new-password" name="new-password" required>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="switchToLogin()">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchToSignUp() {
+            document.getElementById("login-form").classList.add("hidden");
+            document.getElementById("signup-form").classList.remove("hidden");
+        }
+
+        function switchToLogin() {
+            document.getElementById("signup-form").classList.add("hidden");
+            document.getElementById("login-form").classList.remove("hidden");
+        }
+    </script>
+</body>
+
+</html>
