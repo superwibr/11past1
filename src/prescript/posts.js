@@ -31,7 +31,7 @@ const posts = [
 	}
 ];
 
-for (let i = 0; i <= padding; i++) {
+for (let i = posts.length - 1; i <= padding; i++) {
 	posts.push({
 		name: "Anonymous",
 		profile: "https://via.placeholder.com/40",
