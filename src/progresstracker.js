@@ -1,8 +1,10 @@
 const currentName = document.currentScript.getAttribute("name");
 
 const rectifyMoment = currentPoint => {
+	if (localStorage.checkpoint === undefined) localStorage.movingTo = currentPoint;
+
 	if (currentPoint == localStorage.movingTo) {
-		console.log(`moved to "${localStorage.movingTo}" from "${localStorage.checkpoint}"`)
+		console.log(`moved to "${localStorage.movingTo}" from "${localStorage.checkpoint}"`);
 		localStorage.checkpoint = currentPoint;
 		delete localStorage.movingTo;
 	}
@@ -23,7 +25,7 @@ const rectifyMoment = currentPoint => {
 if (currentName) rectifyMoment(currentName);
 
 const checkpoint = localStorage.checkpoint;
-const moving = localStorage.movingTo;
+const movingTo = localStorage.movingTo;
 const resuming = localStorage.resuming;
 
-console.log({ checkpoint, moving, resuming, currentName });
+console.log({ checkpoint, movingTo, resuming, currentName });
